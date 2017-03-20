@@ -37,7 +37,7 @@ function initPlayer (startingX) {
 			height: newPlayer.height,
 			image: newPlayer.spriteSheet,
 			numberOfFrames: 1,
-			startingFrameIndex: 1,
+			startingFrameIndex: 0,
 			loop: false
 		});
 
@@ -47,7 +47,7 @@ function initPlayer (startingX) {
 			image: player.spriteSheet,
 			numberOfFrames: 4,
 			ticksPerFrame: 20,
-			startingFrameIndex: 2,
+			startingFrameIndex: 0,
 			loop: true
 		});
 
@@ -57,7 +57,7 @@ function initPlayer (startingX) {
 			image: player.spriteSheet,
 			numberOfFrames: 4,
 			ticksPerFrame: 20,
-			startingFrameIndex: 6,
+			startingFrameIndex: 0,
 			loop: true
 		});
 
@@ -67,7 +67,7 @@ function initPlayer (startingX) {
 			image: player.spriteSheet,
 			numberOfFrames: 1,
 			ticksPerFrame: 20,
-			startingFrameIndex: 10,
+			startingFrameIndex: 0,
 			loop: false
 		});
 
@@ -77,7 +77,7 @@ function initPlayer (startingX) {
 			image: player.spriteSheet,
 			numberOfFrames: 1,
 			ticksPerFrame: 20,
-			startingFrameIndex: 11,
+			startingFrameIndex: 0,
 			loop: false
 		});
 
