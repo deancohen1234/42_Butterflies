@@ -1,6 +1,7 @@
 var requestAnimationFrame, canvas, context, timeout, width, height, keys, player, friction, gravity;
 var score, scoreCard;
 var levelCleared = false;
+var superLevelCleared = false;
 var levelCount = 1;
 
 (initialize());
@@ -86,9 +87,43 @@ function updateGame () {
 			player.xVelocity-= 2;
 		}
 	}
+	
+	if (keys[32] && superLevelCleared) {
+			context.fillStyle = '#000000'
+		}
 
 	// clear the canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
+	
+	if (superLevelCleared) {
+		context.fillStyle = '#000000';
+		context.font = '2.0em "Jim Nightshade"';
+		//context.font.color = '#FFFFFF'
+		var message = 'You have shown great promise my child. Few have the determination to push this far. It shows that even though your struggle is fierce and unending, there is always hope and joy somewhere, waiting to be found. It may be small, almost unnoticable but it is there. Your life begins when you want it to. Go. This game is over. Your live was, is, and will always be a miracle. Make it something that is also miraculous';
+		//context.fillText(stringDivider(message, 10, "<br/>\n"), (canvas.width - context.measureText(message).width)/2, canvas.height/2);
+		wrapText(context, message, 10 ,100, canvas.width, 50);
+		// display the message for 2 seconds before clearing it and starting a new level
+	}
+	
+	function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
+
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+      }
 
 	if (!levelCleared) {
 		// update player and level info
@@ -101,7 +136,8 @@ function updateGame () {
 		player.render();
 	}
 	else {
-		// setup a message to display
+		if (!superLevelCleared) {
+			// setup a message to display
 		context.fillStyle = '#8060B6';
 		context.font = '6em "Jim Nightshade"';
 		var message = 'Level ' + levelCount + ' cleared!';
@@ -117,6 +153,8 @@ function updateGame () {
 				timeout = undefined;
 			}, 2000);
 		}
+		}
+		
 	}
 }
 
@@ -136,6 +174,12 @@ function incrementScore(butterfly) {
 
 		if (level.currentScore == level.maxScore) {
 			levelCleared = true;
+			superLevelCleared = true;
+			score = score + level.currentScore;
+			scoreCard.innerHTML = score;
+		}
+		else if (level.currentScore >= level.superMaxScore) {
+			superLevelCleared = true;
 			score = score + level.currentScore;
 			scoreCard.innerHTML = score;
 		}
