@@ -87,7 +87,7 @@ function initLevel(numButterflies) {
 		newLevel.background.y = 0;
 	};
 
-	backgroundImg.src = "imgs/background.png";
+	backgroundImg.src = "imgs/background2.png";
 
 	return newLevel;
 }
