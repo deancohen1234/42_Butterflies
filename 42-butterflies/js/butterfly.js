@@ -6,7 +6,7 @@ function initButterfly (startingX, startingY) {
 
 	var butterflyImg = new Image();
 	butterflyImg.onload = function () {
-		newButterfly.width = 80;
+		newButterfly.width = 255;
 		newButterfly.height = butterflyImg.height;
 
 		newButterfly.spriteSheet = butterflyImg;
@@ -17,7 +17,7 @@ function initButterfly (startingX, startingY) {
 			image: newButterfly.spriteSheet,
 			numberOfFrames: 2,
 			startingFrameIndex: 0,
-			ticksPerFrame: (Math.random() * 10) + 8,  // random wing flap rate between 8 and 18
+			ticksPerFrame: (Math.random() * 10) + 5,  // random wing flap rate between 8 and 18
 			loop: true
 		});
 
@@ -34,7 +34,7 @@ function initButterfly (startingX, startingY) {
 		newButterfly.captured = true;
 	};
 
-	butterflyImg.src = "imgs/butterfly-sprite.png";
+	butterflyImg.src = "imgs/BatSpriteThing.png";
 
 	return newButterfly;
 }
