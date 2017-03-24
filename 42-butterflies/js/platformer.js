@@ -99,10 +99,24 @@ function updateGame () {
 		context.fillStyle = '#000000';
 		context.font = '2.0em "Jim Nightshade"';
 		//context.font.color = '#FFFFFF'
-		var message = 'You have shown great promise my child. Few have the determination to push this far. It shows that even though your struggle is fierce and unending, there is always hope and joy somewhere, waiting to be found. It may be small, almost unnoticable but it is there. Your life begins when you want it to. Go. This game is over. Your live was, is, and will always be a miracle. Make it something that is also miraculous';
+		var message = 'You have shown great promise my child. Few have the determination to push this far. It shows that even though your struggle is fierce and unending, there is always hope and joy somewhere, waiting to be found. It may be small, almost unnoticable but it is there. Your life begins when you want it to. Go. This game is over. Your life was, is, and will always be a miracle. Make it something that is also miraculous';
 		//context.fillText(stringDivider(message, 10, "<br/>\n"), (canvas.width - context.measureText(message).width)/2, canvas.height/2);
 		wrapText(context, message, 10 ,100, canvas.width, 50);
-		// display the message for 2 seconds before clearing it and starting a new level
+		
+		if (timeout === undefined) {
+			timeout = window.setTimeout(function () {
+				levelCleared = false;
+				superLevelCleared = false;
+				levelCount = 1;
+				level.reset(42);
+				player.reset();
+				level.currentScore = 0;
+				score = 0;
+				scoreCard.innerHTML = score + level.currentScore;
+				window.clearTimeout(timeout);
+				timeout = undefined;
+			}, 10000);
+		}
 	}
 	
 	function wrapText(context, text, x, y, maxWidth, lineHeight) {
@@ -174,17 +188,23 @@ function incrementScore(butterfly) {
 
 		if (level.currentScore == level.maxScore) {
 			levelCleared = true;
-			superLevelCleared = true;
+			//superLevelCleared = true;
 			score = score + level.currentScore;
 			scoreCard.innerHTML = score;
+			
 		}
-		else if (level.currentScore >= level.superMaxScore) {
+		else if ((score + level.currentScore) >= level.superMaxScore) {
 			superLevelCleared = true;
+			levelCleared = true;
 			score = score + level.currentScore;
 			scoreCard.innerHTML = score;
 		}
 	}
 
+}
+
+function getScore() {
+	console.log(level.currentScore);
 }
 
 // on frame draw

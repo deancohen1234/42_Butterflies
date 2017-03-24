@@ -2,7 +2,7 @@ function initLevel(numButterflies) {
 	var newLevel = {};
 	newLevel.maxScore = numButterflies;
 	newLevel.currentScore = 0;
-	newLevel.superMaxScore = 1000000;
+	newLevel.superMaxScore = 100;
 
 	// start the background at the top left edge
 	newLevel.background = {
