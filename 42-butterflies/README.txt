@@ -1,0 +1,4 @@
+The first change I made was that I lowered gravity, and increased the speed of the player movement. Then I added a wall jumping mechanic on the left wall. 
+After that I moved all the css to a separate file and changed the background color a more evil looking color
+Then I added a mechanic for the end game. I had to first make a check for when the score was 100, then had a large piece of text appear. But for the text I had to find a function that would wrap the text for the screen. After that I also added a 10 second timer so after 10 seconds the game would restart
+I added my own sprite sheets for the player and collectables, as well as my own background
