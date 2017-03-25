@@ -18,7 +18,7 @@ function initPlayer (startingX) {
 	var playerImg = new Image();
 	playerImg.onload = function () {
 		newPlayer.y = height - playerImg.height;
-		newPlayer.width = 220;
+		newPlayer.width = 110;
 		newPlayer.height = playerImg.height;
 		newPlayer.spriteSheet = playerImg;
 		newPlayer.xyArray = [width][height];
@@ -161,7 +161,7 @@ function initPlayer (startingX) {
 		return checkColl(collisionObject, other);
 	};
 
-	playerImg.src = "imgs/human-sprite.png";
+	playerImg.src = "imgs/PlayerSprite.png";
 
 	return newPlayer;
 }
